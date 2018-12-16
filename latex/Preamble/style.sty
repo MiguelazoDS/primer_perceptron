@@ -1,0 +1,104 @@
+%Paquete para poder incluir c贸digo
+\usepackage{listings}
+
+%Permite poner nombres con espacios en \includegraphics
+\usepackage[space]{grffile}
+
+%Permite realizar gr醘icos
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning}
+
+%Permite letras más pequeñas en descripción.
+\usepackage[font=scriptsize]{caption}
+
+%Permite tachar con \sout{text}
+\usepackage{ulem}
+
+%Permite tachar en modo matemático con \cancel{expression}
+\usepackage{cancel}
+
+%Permite usar divisi髇 oblicua
+\usepackage{nicefrac}
+
+%Permite usar colores
+\usepackage{color}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listingsutf8}
+
+%Permite usar colores en celdas, hhline es para redibujar las celdas por encima de los colores, rotating permite rotar tablas.
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{adjustbox}
+
+%Permite usar el comando \FloatBarrier para que las imagenes queden debajo de la secci贸n correspondiente
+%\usepackage{placeins}
+%Alternativa a \usepackage{placeins} que permite usar H en lugar de h!.
+\usepackage{float}
+
+%Permite usar m煤ltiples filas en las columnas que se elija
+\usepackage{multirow}
+
+%Corta los enlaces demasiado largos.
+\usepackage{xurl}
+
+%Sin sangr铆a
+\setlength\parindent{0pt}
+
+%Habilita hyperlink en citas y enlaces en las referencias. sorting=none
+%Hace que las referencias se ordenen de acuerdo a su aparici贸n
+\usepackage[hyperref=true,style=numeric,backend=biber,sorting=none]{biblatex}
+
+%Colores customizados
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.39,0.39,0.39}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.93,0.95,0.95}
+\definecolor{codeblue}{rgb}{0.16,0.39,0.59}
+
+%Define el estilo de la presentaci贸n de c贸digo
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codeblue},
+    keywordstyle=\color{codepurple},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codegreen},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    %numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    %Permite que el c贸digo sea copiable omitiendo los espacios.
+    columns=fullflexible
+}
+\lstset{style=mystyle}
+
+%Necesarios para escribir en español, además utf8 permite usar á, ñ y ü en lugar de su expresión con \'a y \~n. Además evita usar \textdegree para el símbolo de grados
+\usepackage[latin1, utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+%Colecci贸n de s铆颅mbolos
+\usepackage{amssymb}
+
+%amssymb ya lo carga
+%\usepackage{amsfonts}
+
+%Permite la escritura de ecuaciones matem谩ticas
+\usepackage{amsmath}
+
+%Permite incluir im谩genes en los documentos
+\usepackage{graphicx}
+
+%Modifica los colores de los diferentes enlaces (铆颅ndice, citas, urls)
+\usepackage[colorlinks=true, linkcolor=black]{hyperref}
+\hypersetup{colorlinks, citecolor=[rgb]{0,0.6,0}, urlcolor=[rgb]{0.07,0.24,0.35}}
+
+%Permite el uso de n煤meros de p谩ginas, encabezados y pies de p谩gina
+\usepackage{fancyhdr}
