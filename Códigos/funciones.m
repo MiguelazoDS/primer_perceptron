@@ -1,9 +1,7 @@
 %Definiciones de las funciones.
 function y = funciones()
   y.entrada = @entrada;
-  y.capa_oculta=@capa_oculta;
-  y.salida = @salida;
-  y.salida_real = @salida_real;
+  y.oculta_salida=@oculta_salida;
   y.pesos = @pesos;
   y.a = @a;
   y.act_nodos = @act_nodos;
@@ -16,20 +14,11 @@ function y = entrada(x)
   y = [x,1];
 endfunction
 
-%Define el tamaño de la capa oculta y lo completa con unos. 
-%Le agrega un valor valor uno que es el valor de bias.
-function y = capa_oculta(x)
-  y = ones(1,x+1);
-endfunction
-
-%Define los nodos de salidas
-function y = salida(x)
-  y = ones(1,x);
-endfunction
-
-%Guarda los valores reales de salida.
-function y = salida_real(x)
-  y = x;
+%Define el tamaño de la capa oculta y de salida y lo completa con unos. 
+%Le agrega un valor uno que es el valor de bias para el caso de la capa oculta.
+function [y1, y2] = oculta_salida(x)
+  y1 = ones(1,x+1);
+  y2 = ones(1,x);
 endfunction
 
 %Pesos aleatorios entre 0 y 1. Son dos matrices de pesos.
@@ -47,9 +36,8 @@ function [y1,y2] = pesos(x1,x2,x3)
   y2 = rand(b+1,c);
 endfunction
 
-%Recibe el vector de entrada y una matriz de pesos.
-%Devuelve un valor. El parámetro ind si es 0 guarda los valores 
-%para ser usados por la capa oculta, si es 1 en la capa de salida.
+%Recibe un vector de entrada y una matriz de pesos.
+%Devuelve un vector.
 function y = a(x1,x2)
   aux = x1*x2;
   y = sigmoid(aux);
