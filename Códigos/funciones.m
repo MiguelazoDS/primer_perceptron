@@ -26,14 +26,25 @@ function y = salida(x)
   y = x;
 endfunction
 
-%Pesos aleatorios entre 0 y 1. Son dos vectores de pesos.
-%El primer vector para los pesos entre la entrada y la capa oculta.
-%El segundo vector para los pesos entre la capa oculta y la salida.
+%Pesos aleatorios entre 0 y 1. Son dos matrices de pesos.
+%La primera para los pesos entre la entrada y la capa oculta,
+%la segunda para los pesos entre la capa oculta y la salida.
+%Los parámetros que se reciben son el vector de entradas, ocultos y salida.
+%En b se resta 1 por que en la capa oculta también hay un valor de bias 
+%que funciona como entrada a la capa de salida, pero no es destino de la capa de 
+%entrada.
 function [y1,y2] = pesos(x1,x2,x3)
-  aux1 = size(x1,2)*size(x2,2)
-  aux2 = size(x2,2)*size(x3,2)
-  y1 = rand(1,aux1);
-  y2 = rand(1,aux2);
+  a = size(x1,2)
+  b = (size(x2,2)-1)
+  c = size(x3,2)
+  y1 = rand(a,b);
+  y2 = rand(b+1,c);
+endfunction
+
+%Recibe el vector de entrada y el primer vector de pesos.
+%Devuelve un valor.
+function y = z(x1,x2)
+    
 endfunction
 
 %Se define la función de activación sigmoid.
