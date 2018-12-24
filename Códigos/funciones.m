@@ -6,6 +6,7 @@ function y = funciones()
   y.a = @a;
   y.act_nodos = @act_nodos;
   y.sigmoid = @sigmoid;
+  y.costo = @costo;
   y.sigmoid_d = @sigmoid_d;
 endfunction
 
@@ -54,10 +55,19 @@ endfunction
 
 %Se define la función de activación sigmoid.
 function y = sigmoid(x)
-  aux = (1 / (1 + e**(-x(1))));
+  aux = (1 / 1 + e**(-x(1)));
   for i=2:size(x,2)
-    y = [aux,(1 / (1 + e**(-x(i))))];
+    y = [aux,1 / (1 + e**(-x(i)))];
   endfor
+endfunction
+
+%Calcula el error cuadrático medio.
+function y = costo(x1,x2)
+  y = 0;
+  for i=1:size(x1,2)
+    y += (x1(i)-x2(i))**2;
+  endfor
+  y = y/2;
 endfunction
 
 %Se define la derivada de la función de activación.
