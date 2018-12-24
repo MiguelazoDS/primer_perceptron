@@ -3,9 +3,10 @@ function y = funciones()
   y.entrada = @entrada;
   y.capa_oculta=@capa_oculta;
   y.salida = @salida;
+  y.salida_real = @salida_real;
   y.pesos = @pesos;
-  y.feedforward = @feedforward;
-  y.backpropagation = @backpropagation;
+  y.a = @a;
+  y.act_nodos = @act_nodos;
   y.sigmoid = @sigmoid;
   y.sigmoid_d = @sigmoid_d;
 endfunction
@@ -21,8 +22,13 @@ function y = capa_oculta(x)
   y = ones(1,x+1);
 endfunction
 
-%Define las salidas
+%Define los nodos de salidas
 function y = salida(x)
+  y = ones(1,x);
+endfunction
+
+%Guarda los valores reales de salida.
+function y = salida_real(x)
   y = x;
 endfunction
 
@@ -41,15 +47,29 @@ function [y1,y2] = pesos(x1,x2,x3)
   y2 = rand(b+1,c);
 endfunction
 
-%Recibe el vector de entrada y el primer vector de pesos.
-%Devuelve un valor.
-function y = z(x1,x2)
-    
+%Recibe el vector de entrada y una matriz de pesos.
+%Devuelve un valor. El parámetro ind si es 0 guarda los valores 
+%para ser usados por la capa oculta, si es 1 en la capa de salida.
+function y = a(x1,x2)
+  aux = x1*x2;
+  y = sigmoid(aux);
+endfunction
+
+%Mando la salida de la función de activación y el vector de nodos que deseo actualizar
+%Puede ser el oculto o el de salida.
+function y = act_nodos(x1,x2)
+  for i=1:size(x1,2)
+    x2(i) = x1(i);
+  endfor
+  y = x2;
 endfunction
 
 %Se define la función de activación sigmoid.
 function y = sigmoid(x)
-  y = 1 / (1 + e**(-x));
+  aux = (1 / (1 + e**(-x(1))));
+  for i=2:size(x,2)
+    y = [aux,(1 / (1 + e**(-x(i))))];
+  endfor
 endfunction
 
 %Se define la derivada de la función de activación.
@@ -57,12 +77,3 @@ function y = sigmoid_d(x)
   aux = sigmoid(x);
   y = -aux**2;
 endfunction
-
-function feedforward
-  disp('Función feedforward')
-endfunction
-
-function backpropagation
-  disp('Función backpropagation')
-endfunction
-
