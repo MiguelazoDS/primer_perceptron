@@ -2,11 +2,13 @@
 function y = funciones()
   y.nodos = @nodos;
   y.pesos = @pesos;
+  y.regresion = @regresion;
   y.act = @act;
   y.sigmoid = @sigmoid;
   y.act_nodos = @act_nodos;
   y.costo = @costo;
-  y.sigmoid_d = @sigmoid_d;
+  y.parc_Et_ao = @parc_Et_ao;
+  y.parc_ao_zo = @parc_ao_zo;
 endfunction
 
 %Guarda los valores de entrada y le agrega un valor de bias igual a 1.
@@ -33,13 +35,17 @@ function [y1,y2] = pesos(x1,x2,x3)
   y2 = rand(b+1,c);
 endfunction
 
+%Calcula la regresión lineal.
+function y = regresion(x1,x2)
+  y = x1*x2;
+endfunction
+
 %Recibe un vector de entrada y una matriz de pesos.
 %Devuelve un vector.
-function y = act(x1,x2)
-  aux = x1*x2;
+function y = act(x)
   y = [];
-  for i=1:size(aux,2)
-    y = [y,sigmoid(aux(i))];
+  for i=1:size(x,2)
+    y = [y,sigmoid(x(i))];
   endfor
 endfunction
 
@@ -66,8 +72,14 @@ function y = costo(x1,x2)
   y = y/2;
 endfunction
 
+function y = parc_Et_ao(x1,x2)
+  y = [];
+  for i=1:size(x1,2)
+    y = [y, x2(i) - x1(i)];
+  endfor
+endfunction
+
 %Se define la derivada de la función de activación.
-function y = sigmoid_d(x)
-  aux = sigmoid(x);
-  y = -aux**2;
+function y = parc_ao_zo(x)
+  y = sigmoid(x)(1-sigmoid(x));
 endfunction
